@@ -1,5 +1,8 @@
 "use client"
 import { useState, useEffect } from "react";
+//import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { Container,Row,Col } from "react-bootstrap";
 
 // Example function to make API requests
 const makeApiCall = async (postcode, address) => {
@@ -77,6 +80,11 @@ export default function Home() {
 
   return (
     <div>
+            <Container fluid>
+      <Row className="d-flex justify-content-center pt-3 min-vh-100">
+        <Col md={6}>
+        <Card >
+        <Card.Body>
       {urn && collectionData ? (
         <div>
           {/* <p>URN found in local storage: {urn}</p> */}
@@ -117,6 +125,12 @@ export default function Home() {
           <button type="submit">Save</button>
         </form>
       )}
+     
+      </Card.Body>
+      </Card>
+      </Col>
+    </Row>
+    </Container>
     </div>
   );
 }
