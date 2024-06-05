@@ -5,3 +5,8 @@
 .container-fluid{
   background-color: aqua;
 }
+
+
+.center-text{
+  text-align: center;
+}

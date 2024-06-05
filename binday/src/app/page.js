@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 //import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Container,Row,Col } from "react-bootstrap";
+import Infocard from "./components/Infocard";
 
 // Example function to make API requests
 const makeApiCall = async (postcode, address) => {
@@ -57,11 +58,16 @@ export default function Home() {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-GB', options);
 
-    // Add 'st', 'nd', 'rd', or 'th' to the day
+    // Extract the day part from the formatted date string
     const day = date.getDate();
     const suffix = (day === 1 || day === 21 || day === 31) ? 'st' : (day === 2 || day === 22) ? 'nd' : (day === 3 || day === 23) ? 'rd' : 'th';
-    return formattedDate.replace(/\d{1,2}$/, (match) => match + suffix);
-  };
+    
+    // Replace the day part with the day + suffix
+    const dayWithSuffix = `${day}${suffix}`;
+    const formattedDateWithSuffix = formattedDate.replace(day.toString(), dayWithSuffix);
+
+    return formattedDateWithSuffix;
+};
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const urn = await makeApiCall(postcode, address);
@@ -86,11 +92,11 @@ export default function Home() {
         <Card >
         <Card.Body>
       {urn && collectionData ? (
-        <div>
+        <div className="center-text">
           {/* <p>URN found in local storage: {urn}</p> */}
+          <h2>Your Next Collection: {collectionData.collectionDate}</h2>
+          <h3>Collection Type: {collectionData.collectionType}</h3>
           <p>postcode found in local storage: {postcode}</p>
-          <p>Collection Type: {collectionData.collectionType}</p>
-          <p>Collection Date: {collectionData.collectionDate}</p>
           <button onClick={() => setShowForm(true)}>Change Address</button>
         </div>
       ) : urn ? (
@@ -125,9 +131,9 @@ export default function Home() {
           <button type="submit">Save</button>
         </form>
       )}
-     
       </Card.Body>
       </Card>
+    {/* <Infocard></Infocard> */}
       </Col>
     </Row>
     </Container>
