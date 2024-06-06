@@ -2,11 +2,26 @@
   margin: 0;
   padding: 0;
 }
-.container-fluid{
-  background-color: aqua;
-}
+/* .container-fluid{
+  
+} */
 
+.bg-blk{
+  background-color: black;
+}
+.bg-grn{
+  background-color: green;
+}
 
 .center-text{
   text-align: center;
+}
+
+
+.card.custom-class {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
+  backdrop-filter: blur(10px); /* Background blur */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
 }

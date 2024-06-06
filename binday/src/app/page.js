@@ -84,12 +84,22 @@ export default function Home() {
     }
   };
 
+  
+    const getCollectionClass = (type) => {
+      if (type === 'recycling and bins') {
+        return 'bg-blk';
+      }
+      return 'bg-grn';
+    };
+
+
   return (
-    <div>
+  
+    <div className={collectionData ? getCollectionClass(collectionData.collectionType) : 'bg-grn'}>
             <Container fluid>
       <Row className="d-flex justify-content-center pt-3 min-vh-100">
         <Col md={6}>
-        <Card >
+        <Card className="custom-class" >
         <Card.Body>
       {urn && collectionData ? (
         <div className="center-text">
