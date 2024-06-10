@@ -9,8 +9,9 @@ export async function GET(request) {
         return NextResponse.json({ error: "Missing 'pc' or 'num' query parameter" }, { status: 400 });
     }
 
-    const response = await fetch(`https://webapps.southglos.gov.uk/Webservices/SGC.RefuseCollectionService/RefuseCollectionService.svc/getCollections/${urn}`);
+    const response = await fetch(`https://webapps.southglos.gov.uk/Webservices/SGC.RefuseCollectionService/RefuseCollectionService.svc/getCollections/${urn}`,{ next: { revalidate: 0 } });
     const data = await response.json();
+    console.log(response.json())
     
     const parseDate = (dateString) => dateString ? new Date(dateString.split('/').reverse().join('-')) : null;
 
